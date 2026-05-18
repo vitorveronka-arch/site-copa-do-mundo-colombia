@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Os Cafeteros — Seleção da Colômbia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amarelo:#FCD116; --azul:#003087; --vermelho:#CE1126;
+  --amarelo-dark:#E6BC00; --azul-light:#1a4aad;
+  --off-white:#F8F5EE; --dark:#0A0A14; --gray:#888;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--dark);color:var(--off-white);overflow-x:hidden;padding-bottom:120px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:60px;
+  background:rgba(10,10,20,0.96);backdrop-filter:blur(14px);
+  border-bottom:3px solid transparent;
+  border-image:linear-gradient(90deg,var(--amarelo),var(--azul),var(--vermelho)) 1;
+}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;color:var(--amarelo);cursor:pointer;text-decoration:none}
+.nav-logo span{color:var(--vermelho)}
+.nav-links{display:flex;gap:1.4rem;list-style:none;flex-wrap:wrap}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--off-white);text-decoration:none;transition:color .2s;cursor:pointer;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--amarelo)}
+
+/* ── PÁGINAS ── */
+.page{display:none;min-height:100vh;padding-top:60px}
+.page.active{display:block}
+
+/* ── SEÇÕES COMUNS ── */
+.section-header{text-align:center;padding:4rem 3rem 2.5rem}
+.section-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--amarelo);margin-bottom:.6rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1;letter-spacing:2px}
+.section-title span{color:var(--amarelo)}
+.divider{width:60px;height:4px;background:linear-gradient(90deg,var(--amarelo),var(--vermelho));margin:1.2rem auto}
+
+/* ── HERO ── */
+#page-home{background:var(--dark);position:relative;overflow:hidden}
+.hero{position:relative;min-height:calc(100vh - 60px);display:flex;align-items:center;padding:0 4rem}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(0,48,135,.4) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 20% 80%,rgba(252,209,22,.12) 0%,transparent 60%),radial-gradient(ellipse 30% 40% at 90% 10%,rgba(206,17,38,.15) 0%,transparent 60%)}
+.hero-stripe{position:absolute;top:0;right:0;width:45%;height:100%;overflow:hidden}
+.hero-stripe::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--amarelo) 0%,var(--amarelo) 40%,var(--azul) 40%,var(--azul) 70%,var(--vermelho) 70%,var(--vermelho) 100%);clip-path:polygon(20% 0,100% 0,100% 100%,0% 100%);opacity:.08}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--amarelo);border:1px solid rgba(252,209,22,.4);padding:5px 14px;border-radius:2px;margin-bottom:1.2rem;animation:fadeUp .6s ease both}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,9vw,8rem);line-height:.9;letter-spacing:2px;animation:fadeUp .6s .1s ease both}
+.line-yellow{color:var(--amarelo)}.line-white{color:var(--off-white)}.line-red{color:var(--vermelho)}
+.hero-sub{font-size:1rem;font-weight:300;color:rgba(248,245,238,.65);margin:1.2rem 0 2rem;line-height:1.7;max-width:460px;animation:fadeUp .6s .2s ease both}
+.hero-cta{display:flex;gap:1rem;animation:fadeUp .6s .3s ease both;flex-wrap:wrap}
+.btn-primary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;background:var(--amarelo);color:var(--dark);border:none;padding:12px 28px;cursor:pointer;transition:all .2s;clip-path:polygon(0 0,100% 0,95% 100%,5% 100%)}
+.btn-primary:hover{background:var(--amarelo-dark);transform:translateY(-2px)}
+.btn-secondary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;background:transparent;color:var(--off-white);border:1px solid rgba(248,245,238,.3);padding:12px 28px;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{border-color:var(--off-white);transform:translateY(-2px)}
+.hero-stats{position:absolute;bottom:3rem;left:4rem;display:flex;gap:2.5rem;animation:fadeUp .6s .4s ease both;flex-wrap:wrap}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--amarelo);line-height:1}
+.stat-label{font-size:.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-top:2px}
+.hero-badge{position:absolute;right:5rem;top:50%;transform:translateY(-50%);width:240px;height:240px;border-radius:50%;border:2px solid rgba(252,209,22,.2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;animation:fadeUp .6s .2s ease both}
+.hero-badge::before{content:'';position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(252,209,22,.07)}
+.badge-shield{font-size:5rem;line-height:1}
+.badge-year{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--amarelo)}
+
+/* ── ELENCO ── */
+#page-elenco{background:var(--dark)}
+.position-section{padding:0 3rem 3rem}
+.position-label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--vermelho);border-left:3px solid var(--vermelho);padding-left:12px;margin-bottom:1.2rem}
+.players-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px;background:rgba(248,245,238,.06);margin-bottom:2.5rem}
+.player-card{background:#0e0e1c;padding:1.3rem 1.1rem;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
+.player-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amarelo),var(--azul));transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.player-card:hover{background:#14142a;transform:translateY(-2px)}
+.player-card:hover::before{transform:scaleX(1)}
+.player-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:rgba(252,209,22,.13);line-height:1;position:absolute;top:10px;right:14px}
+.player-name{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--off-white);margin-bottom:3px;line-height:1.2}
+.player-club{font-size:.76rem;color:var(--gray);font-weight:300}
+.player-img{width:100%;height:140px;object-fit:cover;object-position:top;display:block;margin-bottom:.5rem;border-bottom:2px solid rgba(252,209,22,.15)}
+
+/* ── HISTÓRIA / CULTURA ── */
+#page-historia,#page-cultura{background:#060610}
+.timeline{position:relative;padding:0 3rem 5rem;max-width:860px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--amarelo),var(--azul),var(--vermelho));transform:translateX(-50%)}
+.timeline-item{display:flex;align-items:flex-start;gap:2rem;margin-bottom:2.5rem;position:relative}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+.timeline-year{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--amarelo);min-width:80px;text-align:right}
+.timeline-item:nth-child(even) .timeline-year{text-align:left}
+.timeline-dot{width:14px;height:14px;border-radius:50%;background:var(--amarelo);flex-shrink:0;margin-top:7px;position:relative;z-index:1}
+.timeline-content{background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.08);border-left:3px solid var(--amarelo);padding:1.1rem 1.3rem;flex:1}
+.timeline-item:nth-child(even) .timeline-content{border-left:none;border-right:3px solid var(--vermelho)}
+.timeline-event{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--off-white);margin-bottom:5px}
+.timeline-desc{font-size:.85rem;color:rgba(248,245,238,.55);line-height:1.6;font-weight:300}
+
+/* ── CULTURA ── */
+.cultura-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;padding:0 3rem 5rem}
+.cultura-card{background:linear-gradient(160deg,#0f0f22,#0a0a18);border:.5px solid rgba(252,209,22,.12);border-top:3px solid var(--amarelo);padding:2rem 1.75rem;transition:all .3s;position:relative;overflow:hidden}
+.cultura-card:hover{transform:translateY(-4px);border-color:rgba(252,209,22,.35)}
+.cultura-icon{font-size:2.5rem;margin-bottom:1rem}
+.cultura-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:var(--off-white);margin-bottom:.4rem}
+.cultura-sub{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amarelo);margin-bottom:.9rem}
+.cultura-desc{font-size:.87rem;color:rgba(248,245,238,.55);line-height:1.65;font-weight:300}
+
+/* ── LENDAS ── */
+#page-lendas{background:#07070f}
+.lendas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;padding:0 3rem 5rem}
+.lenda-card{background:linear-gradient(160deg,#0f0f22,#0a0a18);border:.5px solid rgba(252,209,22,.15);border-top:3px solid var(--amarelo);padding:1.75rem;transition:all .3s;position:relative;overflow:hidden}
+.lenda-card:hover{border-color:rgba(252,209,22,.4);transform:translateY(-4px)}
+.lenda-years{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--vermelho);margin-bottom:.4rem}
+.lenda-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--off-white);line-height:1;margin-bottom:.4rem}
+.lenda-pos{font-size:.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amarelo);margin-bottom:.9rem}
+.lenda-bio{font-size:.85rem;color:rgba(248,245,238,.55);line-height:1.65;font-weight:300}
+.lenda-stat-row{display:flex;gap:1.2rem;margin-top:1rem;padding-top:1rem;border-top:.5px solid rgba(255,255,255,.07)}
+.lenda-stat .num{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--amarelo)}
+.lenda-stat .lbl{font-size:.65rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray)}
+
+/* ── ESTATÍSTICAS ── */
+#page-stats{background:var(--dark)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;padding:0 3rem 5rem}
+.stat-card{background:#0c0c1e;border:.5px solid rgba(255,255,255,.07);padding:1.75rem}
+.stat-card-title{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amarelo);margin-bottom:1.3rem}
+.top-list{list-style:none}
+.top-list li{display:flex;align-items:center;gap:.9rem;padding:.7rem 0;border-bottom:.5px solid rgba(255,255,255,.05)}
+.top-list li:last-child{border-bottom:none}
+.top-rank{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;color:var(--gray);min-width:22px}
+.top-rank.gold{color:var(--amarelo)}.top-rank.silver{color:#b0b0b0}.top-rank.bronze{color:#cd7f32}
+.top-name{flex:1;font-size:.9rem;font-weight:600;color:var(--off-white)}
+.top-val{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:var(--amarelo)}
+.big-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);margin-bottom:1.3rem}
+.big-stat-item{background:#0c0c1e;padding:1.3rem;text-align:center}
+.big-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--amarelo);line-height:1}
+.big-stat-lbl{font-size:.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-top:5px}
+.bar-chart{margin-top:.8rem}
+.bar-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.55rem}
+.bar-label{font-size:.78rem;color:rgba(248,245,238,.7);min-width:95px;text-align:right}
+.bar-track{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--amarelo),var(--amarelo-dark))}
+.bar-val{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--amarelo);min-width:50px}
+
+/* ── SIMULADOR ── */
+#page-simulador{background:#060612}
+.bracket{padding:0 2rem 5rem;overflow-x:auto}
+.bracket-title{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amarelo);margin:2rem 0 1rem 1rem}
+.bracket-rounds{display:flex;gap:2rem;align-items:flex-start;min-width:900px;padding:1rem}
+.round{display:flex;flex-direction:column;gap:1.5rem;min-width:160px}
+.round-label{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--gray);text-align:center;margin-bottom:.5rem}
+.match-box{background:#0d0d20;border:.5px solid rgba(255,255,255,.08);padding:.7rem .9rem;cursor:pointer;transition:all .2s;border-radius:2px}
+.match-box:hover{background:#16162e;border-color:rgba(252,209,22,.3)}
+.match-team{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;font-size:.85rem;font-weight:600;color:rgba(248,245,238,.7);border-bottom:.5px solid rgba(255,255,255,.05);transition:color .2s}
+.match-team:last-child{border-bottom:none}
+.match-team.winner{color:var(--amarelo);font-weight:700}
+.match-team .flag{font-size:.9rem}
+.sim-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;background:var(--vermelho);color:#fff;border:none;padding:10px 22px;cursor:pointer;transition:all .2s;margin:0 2rem 2rem}
+.sim-btn:hover{background:#a00d1f;transform:translateY(-1px)}
+.sim-reset{background:transparent;color:var(--gray);border:1px solid rgba(255,255,255,.15);padding:10px 22px}
+.sim-reset:hover{color:var(--off-white);border-color:var(--off-white)}
+.sim-controls{display:flex;align-items:center;gap:1rem;padding:0 2rem 1.5rem;flex-wrap:wrap}
+.sim-info{font-size:.82rem;color:var(--gray);font-style:italic}
+.winner-banner{background:linear-gradient(135deg,rgba(252,209,22,.15),rgba(0,48,135,.15));border:1px solid rgba(252,209,22,.3);padding:1.5rem 2rem;margin:0 2rem 2rem;text-align:center;display:none}
+.winner-banner.show{display:block}
+.winner-banner h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--amarelo);letter-spacing:2px}
+.winner-banner p{font-size:.9rem;color:rgba(248,245,238,.65);margin-top:.5rem}
+
+/* ── DRAFT ── */
+#page-draft{background:#07070f}
+.draft-area{display:grid;grid-template-columns:1fr 2fr;gap:2rem;padding:0 3rem 5rem}
+.draft-pool h3,.draft-team h3{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amarelo);margin-bottom:1rem}
+.draft-players{display:flex;flex-direction:column;gap:.5rem;max-height:560px;overflow-y:auto}
+.draft-players::-webkit-scrollbar{width:4px}
+.draft-players::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
+.draft-players::-webkit-scrollbar-thumb{background:var(--amarelo)}
+.draft-player{display:flex;align-items:center;gap:.75rem;background:#0d0d20;border:.5px solid rgba(255,255,255,.07);padding:.7rem 1rem;cursor:pointer;transition:all .2s}
+.draft-player:hover{background:#16162e;border-color:rgba(252,209,22,.3);transform:translateX(2px)}
+.draft-player.selected{opacity:.35;cursor:not-allowed;pointer-events:none}
+.dp-num{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(252,209,22,.3);min-width:28px}
+.dp-info{flex:1}
+.dp-name{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.dp-pos{font-size:.72rem;color:var(--gray)}
+.dp-club{font-size:.7rem;color:rgba(248,245,238,.35)}
+.dp-add{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:2px;color:var(--amarelo)}
+.draft-formation{margin-bottom:1.5rem}
+.formation-select{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:#0d0d20;color:var(--off-white);border:.5px solid rgba(255,255,255,.15);padding:.5rem 1rem;cursor:pointer;width:100%;margin-bottom:1rem}
+.field{background:linear-gradient(180deg,#0a2a0a,#0d1a0d);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:1.5rem 1rem;min-height:420px;position:relative}
+.field-line{position:absolute;left:10%;right:10%;height:1px;background:rgba(255,255,255,.06)}
+.field-circle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;border:1px solid rgba(255,255,255,.06)}
+.position-slots{display:flex;flex-direction:column;gap:.5rem;height:100%}
+.slot-row{display:flex;justify-content:center;gap:.5rem;align-items:center}
+.slot{width:90px;min-height:60px;background:rgba(255,255,255,.04);border:.5px dashed rgba(252,209,22,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;border-radius:2px;padding:.3rem}
+.slot:hover{background:rgba(252,209,22,.07);border-color:rgba(252,209,22,.5)}
+.slot.filled{background:rgba(0,48,135,.25);border-style:solid;border-color:rgba(252,209,22,.4)}
+.slot-pos{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amarelo)}
+.slot-name{font-size:.68rem;font-weight:600;color:var(--off-white);text-align:center;line-height:1.2;margin-top:2px}
+.slot-remove{font-size:.6rem;color:var(--vermelho);margin-top:2px;cursor:pointer}
+.draft-actions{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.draft-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;border:none;padding:10px 20px;cursor:pointer;transition:all .2s}
+.draft-btn.primary{background:var(--amarelo);color:var(--dark)}
+.draft-btn.primary:hover{background:var(--amarelo-dark)}
+.draft-btn.danger{background:transparent;color:var(--vermelho);border:1px solid var(--vermelho)}
+.draft-btn.danger:hover{background:rgba(206,17,38,.1)}
+
+/* ── GALERIA ── */
+#page-galeria {
+  background: #06060e;
+}
+
+.galeria-filtros {
+  display: flex;
+  gap: .75rem;
+  padding: 0 3rem 2rem;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(248, 245, 238, .5);
+  border: 1px solid rgba(255, 255, 255, .1);
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.filtro-btn:hover, .filtro-btn.active {
+  background: var(--amarelo);
+  color: var(--dark);
+  border-color: var(--amarelo);
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2px;
+  padding: 0 3rem 5rem;
+}
+
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #0d0d20;
+}
+
+.galeria-item:nth-child(4n+1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.galeria-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .4s;
+  background: linear-gradient(135deg, #0d0d20, #141430);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+.galeria-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.galeria-thumb img[alt] {
+  text-indent: 0; 
+}
+
+.galeria-item:hover .galeria-thumb {
+  transform: scale(1.05);
+}
+
+.galeria-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 20, .92));
+  opacity: 0;
+  transition: opacity .3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.galeria-item:hover .galeria-overlay {
+  opacity: 1;
+}
+
+.galeria-info {
+  width: 100%;
+}
+
+.galeria-caption {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--off-white);
+}
+
+.galeria-ano {
+  font-size: .72rem;
+  color: var(--amarelo);
+  margin-top: 2px;
+}
+
+/* ── RODAPÉ ── */
+footer{background:#040408;border-top:1px solid rgba(255,255,255,.06);padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--amarelo)}
+.footer-logo span{color:var(--vermelho)}
+.footer-copy{font-size:.75rem;color:var(--gray)}
+
+/* ── CRONÔMETRO FIXO ── */
+#countdown-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:rgba(6,6,18,.97);backdrop-filter:blur(16px);
+  border-top:3px solid transparent;
+  border-image:linear-gradient(90deg,var(--amarelo),var(--azul),var(--vermelho)) 1;
+  padding:.7rem 2rem;
+  display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;
+}
+.cd-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amarelo);white-space:nowrap}
+.cd-units{display:flex;gap:1rem;align-items:center}
+.cd-unit{text-align:center}
+.cd-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--off-white);line-height:1;min-width:48px;display:block}
+.cd-lbl{font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+.cd-sep{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:rgba(252,209,22,.3);padding-bottom:8px}
+.cd-trophy{font-size:1.4rem}
+.cd-event{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:1px;color:var(--off-white)}
+
+/* ── HOME DESTAQUES ── */
+.home-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05)}
+.home-card{background:#060610;padding:2.2rem 2rem;cursor:pointer;transition:background .2s}
+.home-card:hover{background:#0b0b1e}
+.hc-eye{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:.6rem}
+.hc-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;margin-bottom:.4rem}
+.hc-desc{font-size:.83rem;color:rgba(248,245,238,.45);font-weight:300}
+
+/* ── ANIM ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.cd-num{animation:none}
+
+
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: 'Barlow', sans-serif;
+        background: var(--dark);
+        color: var(--off-white);
+        overflow-x: hidden;
+      }
+
+      nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 4rem; height: 70px;
+        background: rgba(10,10,20,0.92); backdrop-filter: blur(12px);
+        border-bottom: 3px solid transparent;
+        border-image: linear-gradient(90deg, var(--amarelo), var(--azul), var(--vermelho)) 1;
+      }
+
+      .nav-logo {
+        font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+        letter-spacing: 3px; color: var(--amarelo); cursor: pointer; text-decoration: none;
+      }
+      .nav-logo span { color: var(--vermelho); }
+      .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+      .nav-links a {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem;
+        font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--off-white); text-decoration: none; transition: color 0.2s; cursor: pointer;
+      }
+      .nav-links a:hover, .nav-links a.active { color: var(--amarelo); }
+
+      .page { display: none; min-height: 100vh; padding-top: 70px; }
+      .page.active { display: block; }
+
+      /* HERO */
+      #page-home { background: var(--dark); position: relative; overflow: hidden; }
+      .hero {
+        position: relative; min-height: calc(100vh - 70px);
+        display: flex; align-items: center; padding: 0 4rem;
+      }
+      .hero-bg {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,48,135,0.4) 0%, transparent 70%),
+          radial-gradient(ellipse 40% 50% at 20% 80%, rgba(252,209,22,0.12) 0%, transparent 60%),
+          radial-gradient(ellipse 30% 40% at 90% 10%, rgba(206,17,38,0.15) 0%, transparent 60%);
+      }
+      .hero-stripe { position: absolute; top: 0; right: 0; width: 45%; height: 100%; overflow: hidden; }
+      .hero-stripe::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(180deg, var(--amarelo) 0%, var(--amarelo) 40%, var(--azul) 40%, var(--azul) 70%, var(--vermelho) 70%, var(--vermelho) 100%);
+        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); opacity: 0.08;
+      }
+      .hero-content { position: relative; z-index: 2; max-width: 650px; }
+      .hero-tag {
+        display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--amarelo); border: 1px solid rgba(252,209,22,0.4);
+        padding: 6px 16px; border-radius: 2px; margin-bottom: 1.5rem;
+        animation: fadeUp 0.6s ease both;
+      }
+      .hero-title {
+        font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 10vw, 9rem);
+        line-height: 0.9; letter-spacing: 2px; animation: fadeUp 0.6s 0.1s ease both;
+      }
+      .hero-title .line-yellow { color: var(--amarelo); }
+      .hero-title .line-white  { color: var(--off-white); }
+      .hero-title .line-red    { color: var(--vermelho); }
+      .hero-sub {
+        font-size: 1.1rem; font-weight: 300; color: rgba(248,245,238,0.65);
+        margin: 1.5rem 0 2.5rem; line-height: 1.7; max-width: 480px;
+        animation: fadeUp 0.6s 0.2s ease both;
+      }
+      .hero-cta { display: flex; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+      .btn-primary {
+        font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+        letter-spacing: 2px; text-transform: uppercase; background: var(--amarelo); color: var(--dark);
+        border: none; padding: 14px 32px; cursor: pointer; transition: all 0.2s;
+        clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+    
+      }
+      .btn-primary:hover { background: var(--amarelo-dark); transform: translateY(-2px); }
+      .btn-secondary {
+        font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+        letter-spacing: 2px; text-transform: uppercase; background: transparent; color: var(--off-white);
+        border: 1px solid rgba(248,245,238,0.3); padding: 14px 32px; cursor: pointer; transition: all 0.2s;
+      }
+      .btn-secondary:hover { border-color: var(--off-white); transform: translateY(-2px); }
+      .hero-stats {
+        position: absolute; bottom: 3rem; left: 4rem; display: flex; gap: 3rem;
+        animation: fadeUp 0.6s 0.4s ease both;
+      }
+      .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--amarelo); line-height: 1;  }
+      .stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-top: 2px; }
+      .hero-badge {
+        position: absolute; right: 6rem; top: 50%; transform: translateY(-50%);
+        width: 280px; height: 280px; border-radius: 50%;
+        border: 2px solid rgba(252,209,22,0.2);
+        display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
+        animation: fadeUp 0.6s 0.2s ease both;
+      }
+      .hero-badge::before { content: ''; position: absolute; inset: -10px; border-radius: 50%; border: 1px solid rgba(252,209,22,0.08); }
+      .badge-shield { font-size: 6rem; line-height: 1; }
+      .badge-year { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--amarelo); }
+
+      /* SEÇÕES */
+      .section-header { text-align: center; padding: 5rem 4rem 3rem; }
+      .section-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--amarelo); margin-bottom: 0.75rem; }
+      .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5rem); line-height: 1; letter-spacing: 2px; }
+      .section-title span { color: var(--amarelo); }
+      .divider { width: 60px; height: 4px; background: linear-gradient(90deg, var(--amarelo), var(--vermelho)); margin: 1.5rem auto; }
+
+      /* ELENCO */
+      #page-elenco { background: var(--dark); }
+      .position-section { padding: 0 4rem 3rem; }
+      .position-label {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+        letter-spacing: 4px; text-transform: uppercase; color: var(--vermelho);
+        border-left: 3px solid var(--vermelho); padding-left: 12px; margin-bottom: 1.5rem;
+      }
+      .players-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1px; background: rgba(248,245,238,0.06); margin-bottom: 3rem;
+      }
+      .player-card {
+        background: #0e0e1c; padding: 1.5rem 1.25rem;
+        transition: all 0.25s; cursor: pointer; position: relative; overflow: hidden;
+      }
+      .player-card::before {
+        content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, var(--amarelo), var(--azul));
+        transform: scaleX(0); transition: transform 0.25s; transform-origin: left;
+      }
+      .player-card:hover { background: #14142a; transform: translateY(-2px); }
+      .player-card:hover::before { transform: scaleX(1); }
+      .player-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: rgba(252,209,22,0.15); line-height: 1; position: absolute; top: 12px; right: 16px; }
+      .player-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--off-white); margin-bottom: 4px; line-height: 1.2; }
+      .player-club { font-size: 0.78rem; color: var(--gray); font-weight: 300; }
+
+      /* HISTÓRIA */
+      #page-historia { background: #060610; }
+      .timeline { position: relative; padding: 0 4rem 5rem; max-width: 900px; margin: 0 auto; }
+      .timeline::before {
+        content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+        background: linear-gradient(180deg, var(--amarelo), var(--azul), var(--vermelho));
+        transform: translateX(-50%);
+      }
+      .timeline-item { display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 3rem; position: relative; }
+      .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+      .timeline-year { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--amarelo); min-width: 80px; text-align: right; }
+      .timeline-item:nth-child(even) .timeline-year { text-align: left; }
+      .timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--amarelo); flex-shrink: 0; margin-top: 8px; position: relative; z-index: 1; }
+      .timeline-content { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.08); border-left: 3px solid var(--amarelo); padding: 1.25rem 1.5rem; flex: 1; }
+      .timeline-item:nth-child(even) .timeline-content { border-left: none; border-right: 3px solid var(--vermelho); }
+      .timeline-event { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--off-white); margin-bottom: 6px; }
+      .timeline-desc { font-size: 0.88rem; color: rgba(248,245,238,0.55); line-height: 1.6; font-weight: 300; }
+
+      /* LENDAS */
+      #page-lendas { background: #07070f; }
+      .lendas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; padding: 0 4rem 5rem; }
+      .lenda-card {
+        background: linear-gradient(160deg, #0f0f22, #0a0a18); border: 0.5px solid rgba(252,209,22,0.15);
+        border-top: 3px solid var(--amarelo); padding: 2rem 1.75rem; transition: all 0.3s; position: relative; overflow: hidden;
+      }
+      .lenda-card::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(252,209,22,0.06), transparent 70%); }
+      .lenda-card:hover { border-color: rgba(252,209,22,0.4); transform: translateY(-4px); background: linear-gradient(160deg, #141430, #0e0e26); }
+      .lenda-years { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--vermelho); margin-bottom: 0.5rem; }
+      .lenda-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 1px; color: var(--off-white); line-height: 1; margin-bottom: 0.5rem; }
+      .lenda-pos { font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--amarelo); margin-bottom: 1rem; }
+      .lenda-bio { font-size: 0.88rem; color: rgba(248,245,238,0.55); line-height: 1.65; font-weight: 300; }
+      .lenda-stat-row { display: flex; gap: 1.5rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 0.5px solid rgba(255,255,255,0.07); }
+      .lenda-stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--amarelo); }
+      .lenda-stat .lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); }
+
+      /* ESTATÍSTICAS */
+      #page-stats { background: var(--dark); }
+      .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; padding: 0 4rem 5rem; }
+      .stat-card { background: #0c0c1e; border: 0.5px solid rgba(255,255,255,0.07); padding: 2rem; }
+      .stat-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--amarelo); margin-bottom: 1.5rem; }
+      .top-list { list-style: none; }
+      .top-list li { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+      .top-list li:last-child { border-bottom: none; }
+      .top-rank { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gray); min-width: 24px; }
+      .top-rank.gold { color: var(--amarelo); }
+      .top-rank.silver { color: #b0b0b0; }
+      .top-rank.bronze { color: #cd7f32; }
+      .top-name { flex: 1; font-size: 0.92rem; font-weight: 600; color: var(--off-white); }
+      .top-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--amarelo); }
+      .big-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-bottom: 1.5rem; }
+      .big-stat-item { background: #0c0c1e; padding: 1.5rem; text-align: center; }
+      .big-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--amarelo); line-height: 1; }
+      .big-stat-lbl { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-top: 6px; }
+      .bar-chart { margin-top: 1rem; }
+      .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+      .bar-label { font-size: 0.8rem; color: rgba(248,245,238,0.7); min-width: 100px; text-align: right; }
+      .bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+      .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--amarelo), var(--amarelo-dark)); }
+      .bar-val { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: var(--amarelo); min-width: 48px; }
+
+      /* RODAPÉ */
+      footer {
+        background: #060610; border-top: 1px solid rgba(255,255,255,0.06);
+        padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      }
+      .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--amarelo); }
+      .footer-logo span { color: var(--vermelho); }
+      .footer-copy { font-size: 0.78rem; color: var(--gray); }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .page.active .position-section,
+      .page.active .lendas-grid,
+      .page.active .stats-grid { animation: fadeUp 0.5s ease both; }
+      .player-img {
+        width: 100%;
+        height: 200px; 
+        object-fit: cover;
+        border-radius: 8px; 
+        margin-bottom: 15px; 
+        border: 2px solid var(--amarelo); 
+      }
+
+
+    .player-card {
+        position: relative; 
+        padding: 0;
+        overflow: hidden;
+        background: #12121c;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: transform 0.3s ease;
+      }
+      
+
+      .player-num {
+        position: absolute;
+        top: 10px;         
+        right: 15px;        
+        z-index: 10;        
+        font-size: 45px;    
+        font-family: 'Bebas Neue', sans-serif;
+        color: var(--amarelo); 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); 
+      }
+
+      /* COMPLEMENTO: PÁGINA DO PAÍS */
+      #page-pais { background: #080812; }
+      .pais-container { padding: 0 4rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+      .pais-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--amarelo); margin-bottom: 1rem; }
+      .pais-text p { font-size: 1.1rem; line-height: 1.8; color: rgba(248,245,238,0.7); margin-bottom: 2rem; }
+      .pais-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .info-box { background: rgba(255,255,255,0.03); padding: 1.5rem; border-left: 3px solid var(--azul); }
+      .info-box span { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; color: var(--vermelho); text-transform: uppercase; margin-bottom: 0.5rem; }
+      .info-box div { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--off-white); }
+      .pais-map { background: #0c0c1e; padding: 2rem; border: 1px solid rgba(252,209,22,0.1); position: relative; }
+      .flag-rect { height: 200px; width: 100%; display: flex; flex-direction: column; margin-bottom: 2rem; }
+      .f-yellow { background: var(--amarelo); flex: 2; }
+      .f-blue { background: var(--azul); flex: 1; }
+      .f-red { background: var(--vermelho); flex: 1; }
+
+      .copa-countdown {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    border-radius: 8px;
+    border: 1px solid #FCD116;
+}
+
+#timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FCD116;
+}
+
+#galeria img:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    border-color: #FCD116 !important;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVEGAÇÃO ═══ -->
+<nav>
+  <a class="nav-logo" onclick="showPage('home')"> <span>Colômbia</span></a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')"       id="nav-home"       class="active">Início</a></li>
+    <li><a onclick="showPage('elenco')"     id="nav-elenco">Elenco</a></li>
+    <li><a onclick="showPage('historia')"   id="nav-historia">História</a></li>
+    <li><a onclick="showPage('cultura')"    id="nav-cultura">Cultura</a></li>
+    <li><a onclick="showPage('lendas')"     id="nav-lendas">Lendas</a></li>
+    <li><a onclick="showPage('stats')"      id="nav-stats">Estatísticas</a></li>
+    <li><a onclick="showPage('simulador')"  id="nav-simulador">Simulador 2026</a></li>
+    <li><a onclick="showPage('draft')"      id="nav-draft">Draft</a></li>
+    <li><a onclick="showPage('galeria')"    id="nav-galeria">Galeria</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ INÍCIO ═══ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stripe"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Federação Colombiana de Futebol</div>
+      <h1 class="hero-title">
+        <div class="line-yellow">Seleção</div>
+        <div class="line-white">Colombiana</div>
+        <div class="line-red"></div>
+      </h1>
+      <p class="hero-sub">A paixão de uma nação transformada em futebol. Amarelo, Azul e Vermelho que emocionam o mundo desde 1924.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('simulador')">Simular Copa 2026 →</button>
+        <button class="btn-secondary" onclick="showPage('historia')">Nossa História</button>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-shield">Colômbia</div>
+      <div class="badge-year">Desde 1924</div>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">6</div><div class="stat-label">Copas do Mundo</div></div>
+      <div><div class="stat-num">1</div><div class="stat-label">Copa América</div></div>
+      <div><div class="stat-num">100+</div><div class="stat-label">Anos de história</div></div>
+      <div><div class="stat-num">#13</div><div class="stat-label">Ranking FIFA</div></div>
+    </div>
+  </div>
+
+  <div class="home-cards">
+    <div class="home-card" onclick="showPage('historia')">
+      <div class="hc-eye" style="color:var(--amarelo)">História</div>
+      <div class="hc-title">100 anos de garra</div>
+      <div class="hc-desc">De 1924 à Copa América 2001 e além — a trajetória épica dos Cafeteros.</div>
+    </div>
+    <div class="home-card" onclick="showPage('cultura')">
+      <div class="hc-eye" style="color:var(--azul-light)">Cultura</div>
+      <div class="hc-title">Música, arte e futebol</div>
+      <div class="hc-desc">A Colômbia que vai além do campo — cumbia, vallenato, Gabriel García Márquez e mais.</div>
+    </div>
+    <div class="home-card" onclick="showPage('simulador')">
+      <div class="hc-eye" style="color:var(--vermelho)">Copa 2026</div>
+      <div class="hc-title">Simule o caminho</div>
+      <div class="hc-desc">Monte o chaveamento e leve a Colômbia ao título da Copa do Mundo 2026.</div>
+    </div>
+    <div class="home-card" onclick="showPage('draft')">
+      <div class="hc-eye" style="color:var(--amarelo)">Draft</div>
+      <div class="hc-title">Monte seu time</div>
+      <div class="hc-desc">Escolha jogadores e monte a seleção ideal com sua formação favorita.</div>
+    </div>
+    <div class="home-card" onclick="showPage('galeria')">
+      <div class="hc-eye" style="color:var(--azul-light)">Galeria</div>
+      <div class="hc-title">Momentos históricos</div>
+      <div class="hc-desc">As imagens que marcaram a história da seleção colombiana para sempre.</div>
+    </div>
+    <div class="home-card" onclick="showPage('lendas')">
+      <div class="hc-eye" style="color:var(--vermelho)">Lendas</div>
+      <div class="hc-title">Imortais do futebol</div>
+      <div class="hc-desc">Valderrama, Higuita, Falcao — os nomes que definiram uma era gloriosa.</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo"> <span>Colômbia</span></div>
+    <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+    <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+  </footer>
+</div>
+
+<!-- ═══ ELENCO ═══ -->
+<div id="page-elenco" class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Plantel 2025</div>
+    <h2 class="section-title">O <span>ELENCO</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="position-section">
+    <div class="position-label">Goleiros</div>
+    <div class="players-grid">
+      <div class="player-card">
+        <img src="img/camilo.jpg" alt="Camilo Vargas" class="player-img">
+        <div class="player-num">1</div>
+        <div class="player-name">Camilo Vargas</div>
+        <div class="player-club">Atlas (MEX)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/alvaro.jpg" alt="Álvaro Montero" class="player-img">
+        <div class="player-num">12</div>
+        <div class="player-name">Álvaro Montero</div>
+        <div class="player-club">Millonarios (COL)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/kevin.jpg" alt="Kevin Mier" class="player-img">
+        <div class="player-num">23</div>
+        <div class="player-name">Kevin Mier</div>
+        <div class="player-club">Cruz Azul (MEX)</div>
+      </div>
+    </div>
+
+    <div class="position-label">Defensores</div>
+    <div class="players-grid">
+      <div class="player-card">
+        <img src="img/daniel.jpg" alt="Daniel Muñoz" class="player-img">
+        <div class="player-num">2</div>
+        <div class="player-name">Daniel Muñoz</div>
+        <div class="player-club">Crystal Palace (ING)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/johan.jpg" alt="Johan Mojica" class="player-img">
+        <div class="player-num">3</div>
+        <div class="player-name">Johan Mojica</div>
+        <div class="player-club">Mallorca (ESP)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/davinson.jpg" alt="Dávinson Sánchez" class="player-img">
+        <div class="player-num">4</div>
+        <div class="player-name">Dávinson Sánchez</div>
+        <div class="player-club">Galatasaray (TUR)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/yerry.jpg" alt="Yerry Mina" class="player-img">
+        <div class="player-num">5</div>
+        <div class="player-name">Yerry Mina</div>
+        <div class="player-club">Cagliari (ITA)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/jhon.jpg" alt="Jhon Lucumí" class="player-img">
+        <div class="player-num">13</div>
+        <div class="player-name">Jhon Lucumí</div>
+        <div class="player-club">Bologna (ITA)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/santiago.jpg" alt="Santiago Arias" class="player-img">
+        <div class="player-num">16</div>
+        <div class="player-name">Santiago Arias</div>
+        <div class="player-club">Bahia (BRA)</div>
+      </div>
+    </div>
+
+    <div class="position-label">Meio-campistas</div>
+    <div class="players-grid">
+      <div class="player-card">
+        <img src="img/wilmar.jpg" alt="Wilmar Barrios" class="player-img">
+        <div class="player-num">6</div>
+        <div class="player-name">Wilmar Barrios</div>
+        <div class="player-club">Zenit (RUS)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/mateus.jpg" alt="Mateus Uribe" class="player-img">
+        <div class="player-num">8</div>
+        <div class="player-name">Mateus Uribe</div>
+        <div class="player-club">Al-Sadd (QAT)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/james.jpg" alt="James Rodríguez" class="player-img">
+        <div class="player-num">10</div>
+        <div class="player-name">James Rodríguez</div>
+        <div class="player-club">Rayo Vallecano (ESP)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/arias.jpg" alt="Jhon Arias" class="player-img">
+        <div class="player-num">15</div>
+        <div class="player-name">Jhon Arias</div>
+        <div class="player-club">Palmeiras (BRA)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/cuadrado.jpg" alt="Juan Cuadrado" class="player-img">
+        <div class="player-num">17</div>
+        <div class="player-name">Juan Cuadrado</div>
+        <div class="player-club">Pisa Sporting Club (ITA)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/richard.jpeg" alt="Richard Ríos" class="player-img">
+        <div class="player-num">18</div>
+        <div class="player-name">Richard Ríos</div>
+        <div class="player-club">Palmeiras (BRA)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/villa.jpg" alt="Villa" class="player-img">
+        <div class="player-num">20</div>
+        <div class="player-name">Sebastián Villa</div>
+        <div class="player-club">Independiente Rivadavia (ARG)</div>
+      </div>
+    </div>
+
+    <div class="position-label">Atacantes</div>
+    <div class="players-grid">
+      <div class="player-card">
+        <img src="img/luis.avif" alt="Luis Díaz" class="player-img">
+        <div class="player-num">7</div>
+        <div class="player-name">Luis Díaz</div>
+        <div class="player-club">Liverpool (ING)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/radal.jpg" alt="Radamel Falcao" class="player-img">
+        <div class="player-num">9</div>
+        <div class="player-name">Radamel Falcao</div>
+        <div class="player-club">Millonarios (COL)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/zapata.jpg" alt="Duván Zapata" class="player-img">
+        <div class="player-num">11</div>
+        <div class="player-name">Duván Zapata</div>
+        <div class="player-club">Torino (ITA)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/migel.jpg" alt="Miguel Borja" class="player-img">
+        <div class="player-num">14</div>
+        <div class="player-name">Miguel Borja</div>
+        <div class="player-club">River Plate (ARG)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/cordoba.webp" alt="Jhon Córdoba" class="player-img">
+        <div class="player-num">19</div>
+        <div class="player-name">Jhon Córdoba</div>
+        <div class="player-club">Krasnodar (RUS)</div>
+      </div>
+      <div class="player-card">
+        <img src="img/jader.jpg" alt="Jhon Durán" class="player-img">
+        <div class="player-num">21</div>
+        <div class="player-name">Jhon Durán</div>
+        <div class="player-club">Aston Villa (ING)</div>
+      </div>
+    </div>
+</div>
+
+<footer>
+  <div class="footer-logo"> <span>Colômbia</span></div>
+  <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+  <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+</footer>
+</div>
+
+<!-- ═══ HISTÓRIA ═══ -->
+<div id="page-historia" class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Nossa trajetória</div>
+    <h2 class="section-title">A <span>HISTÓRIA</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1924</div><div class="timeline-dot"></div>
+      <div class="timeline-content"><div class="timeline-event">Fundação da Seleção</div><div class="timeline-desc">A Colômbia disputa sua primeira partida internacional. Nasce a história dos Cafeteros com as cores amarelo, azul e vermelho representando a riqueza da nação.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1962</div><div class="timeline-dot"></div>
+      <div class="timeline-content"><div class="timeline-event">Primeira Copa do Mundo</div><div class="timeline-desc">A Colômbia estreia no Mundial do Chile, sem avançar da fase de grupos. Um passo histórico para o futebol colombiano no cenário mundial.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1975</div><div class="timeline-dot"></div>
+      <div class="timeline-content"><div class="timeline-event">Copa América — Vice-campeã</div><div class="timeline-desc">A Colômbia chega à final da Copa América de 1975, se consolidando como potência continental, mas cai diante do Peru na decisão.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1990</div><div class="timeline-dot" style="background:var(--azul-light)"></div>
+      <div class="timeline-content" style="border-left-color:var(--azul-light)"><div class="timeline-event">Itália 90 — A geração de Higuita</div><div class="timeline-desc">A Colômbia classifica para a Itália com Valderrama, Higuita e Asprilla. Uma geração histórica que devolveu o otimismo ao futebol colombiano no cenário mundial.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1994</div><div class="timeline-dot"></div>
+      <div class="timeline-content"><div class="timeline-event">EUA '94 — A tragédia de Escobar</div><div class="timeline-desc">A Colômbia chega entre as favoritas, mas é eliminada na primeira fase. A morte trágica de Andrés Escobar marca um dos momentos mais sombrios do futebol colombiano.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2001</div><div class="timeline-dot" style="background:var(--amarelo)"></div>
+      <div class="timeline-content"><div class="timeline-event">🏆 CAMPEÃ — Copa América 2001</div><div class="timeline-desc">A Colômbia organiza e vence sua única Copa América. Jogando em casa, os Cafeteros levantam o título continental com uma atuação memorável e irrepreensível.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014</div><div class="timeline-dot" style="background:var(--azul-light)"></div>
+      <div class="timeline-content" style="border-left-color:var(--azul-light)"><div class="timeline-event">Brasil '14 — A era de James</div><div class="timeline-desc">James Rodríguez torna-se artilheiro da Copa. A Colômbia chega às quartas de final em campanha brilhante que encantou o mundo inteiro.</div></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div><div class="timeline-dot" style="background:var(--vermelho)"></div>
+      <div class="timeline-content" style="border-left-color:var(--vermelho)"><div class="timeline-event">Copa América 2024 — Vice-campeã</div><div class="timeline-desc">A Colômbia chega à final da Copa América nos EUA com atuação brilhante. Cai diante da Argentina na decisão, mas confirma seu status de potência continental.</div></div>
+    </div>
+</div>
+
+<footer>
+  <div class="footer-logo"> <span>Colômbia</span></div>
+  <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+  <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+</footer>
+</div>
+
+<!-- ═══ CULTURA ═══ -->
+<div id="page-cultura" class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Além do campo</div>
+    <h2 class="section-title">CULTURA <span>COLOMBIANA</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="cultura-grid">
+    <div class="cultura-card">
+      <div class="cultura-icon">🎵</div>
+      <div class="cultura-title">Música</div>
+      <div class="cultura-sub">Cumbia & Vallenato</div>
+      <div class="cultura-desc">A Colômbia é berço do vallenato, reconhecido pela UNESCO como Patrimônio Imaterial da Humanidade. A cumbia, com suas raízes africanas, indígenas e espanholas, é a alma do povo colombiano. Artistas como Carlos Vives e Shakira levaram a música colombiana ao mundo.</div>
+    </div>
+    <div class="cultura-card" style="border-top-color:var(--azul-light)">
+      <div class="cultura-icon">📚</div>
+      <div class="cultura-title">Literatura</div>
+      <div class="cultura-sub">Realismo Mágico</div>
+      <div class="cultura-desc">Gabriel García Márquez, Nobel de Literatura em 1982, colocou a Colômbia no mapa literário mundial com "Cem Anos de Solidão". O realismo mágico, mistura de fantasia com realidade cotidiana, é a marca registrada da literatura colombiana.</div>
+    </div>
+    <div class="cultura-card" style="border-top-color:var(--vermelho)">
+      <div class="cultura-icon">☕</div>
+      <div class="cultura-title">Café</div>
+      <div class="cultura-sub">Orgulho Nacional</div>
+      <div class="cultura-desc">O café colombiano é reconhecido mundialmente como um dos melhores. Cultivado nas montanhas dos Andes, é símbolo de identidade nacional e gerou o nome carinhoso "Cafeteros" para a seleção. A Região Cafeeira é Patrimônio Mundial da UNESCO.</div>
+    </div>
+    <div class="cultura-card">
+      <div class="cultura-icon">🎨</div>
+      <div class="cultura-title">Arte</div>
+      <div class="cultura-sub">Botero e o Figurativismo</div>
+      <div class="cultura-desc">Fernando Botero, nascido em Medellín em 1932, é o artista latino-americano mais reconhecido internacionalmente. Seu estilo único de figuras volumosas — o "boterismo" — é inconfundível e celebrado em museus de todo o mundo.</div>
+    </div>
+    <div class="cultura-card" style="border-top-color:var(--amarelo)">
+      <div class="cultura-icon">💃</div>
+      <div class="cultura-title">Dança</div>
+      <div class="cultura-sub">Carnaval de Barranquilla</div>
+      <div class="cultura-desc">O Carnaval de Barranquilla é o segundo maior do mundo, perdendo apenas para o do Rio de Janeiro. Declarado Patrimônio Imaterial pela UNESCO, mistura mapalé, porro e cumbia em quatro dias de celebração vibrante e colorida.</div>
+    </div>
+    <div class="cultura-card" style="border-top-color:var(--azul-light)">
+      <div class="cultura-icon">🌺</div>
+      <div class="cultura-title">Flores</div>
+      <div class="cultura-sub">Feria de las Flores</div>
+      <div class="cultura-desc">Medellín, chamada de "Cidade Eterna da Primavera", sedia anualmente a Feria de las Flores, com o espetacular Desfile de Silleteros. A Colômbia é o segundo maior exportador de flores do mundo, após a Holanda.</div>
+    </div>
+    <div class="cultura-card" style="border-top-color:var(--vermelho)">
+      <div class="cultura-icon">🏛️</div>
+      <div class="cultura-title">Arqueologia</div>
+      <div class="cultura-sub">Ciudad Perdida e San Agustín</div>
+      <div class="cultura-desc">A Colômbia guarda patrimônios arqueológicos impressionantes. Ciudad Perdida, mais antiga que Machu Picchu, e as estátuas gigantes de San Agustín revelam civilizações pré-colombianas de complexidade e beleza extraordinárias.</div>
+    </div>
+    <div class="cultura-card">
+      <div class="cultura-icon">🚴</div>
+      <div class="cultura-title">Ciclismo</div>
+      <div class="cultura-sub">Escarabajos das montanhas</div>
+      <div class="cultura-desc">Os ciclistas colombianos são chamados de "escarabajos" pela habilidade nas subidas de montanha. Egan Bernal e Nairo Quintana conquistaram o Tour de France e o Giro d'Italia, tornando a Colômbia uma potência mundial do ciclismo.</div>
+    </div>
+    <div class="cultura-card" style="border-top-color:var(--amarelo)">
+      <div class="cultura-icon">🦜</div>
+      <div class="cultura-title">Biodiversidade</div>
+      <div class="cultura-sub">País megadiverso</div>
+      <div class="cultura-desc">A Colômbia é o país mais biodiverso do mundo por quilômetro quadrado, com mais espécies de aves do que qualquer outra nação. A variedade de ecossistemas — Amazônia, Andes, Caribe, Pacífico e Llanos — é única no planeta.</div>
+    </div>
+</div>
+
+<footer>
+  <div class="footer-logo"> <span>Colômbia</span></div>
+  <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+  <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+</footer>
+</div>
+
+<!-- ═══ LENDAS ═══ -->
+<div id="page-lendas" class="page">
+    <div class="section-header">
+      <div class="section-eyebrow">Imortais do futebol colombiano</div>
+      <h2 class="section-title">AS <span>LENDAS</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="lendas-grid">
+      <div class="lenda-card">
+        <img src="img/valderrama.png" alt="Carlos Valderrama" class="player-img">
+        <div class="lenda-years">1985 — 1998</div>
+        <div class="lenda-name">Carlos Valderrama</div>
+        <div class="lenda-pos">Meio-campista</div>
+        <div class="lenda-bio">El Pibe. O melhor jogador da história da Colômbia. Com seu cabelo loiro e visão de jogo inigualável, conduziu a seleção em três Copas do Mundo consecutivas.</div>
+        <div class="lenda-stat-row">
+          <div class="lenda-stat"><div class="num">111</div><div class="lbl">Jogos</div></div>
+          <div class="lenda-stat"><div class="num">11</div><div class="lbl">Gols</div></div>
+        </div>
+      </div>
+      <div class="lenda-card" style="border-top-color:var(--vermelho)">
+        <img src="img/hifuita.jpg" alt="René Higuita" class="player-img">
+        <div class="lenda-years">1987 — 1999</div>
+        <div class="lenda-name">René Higuita</div>
+        <div class="lenda-pos">Goleiro</div>
+        <div class="lenda-bio">El Loco. Goleiro revolucionário que reinventou a posição com estilo livre e o famoso escorpião. Um dos mais criativos e corajosos da história do futebol mundial.</div>
+        <div class="lenda-stat-row">
+          <div class="lenda-stat"><div class="num">68</div><div class="lbl">Jogos</div></div>
+          <div class="lenda-stat"><div class="num">42</div><div class="lbl">G. sofridos</div></div>
+          <div class="lenda-stat"><div class="num">1</div><div class="lbl">Copa Am.</div></div>
+        </div>
+      </div>
+      <div class="lenda-card" style="border-top-color:var(--azul-light)">
+        <img src="img/radal.jpg" alt="Radamel Falcao" class="player-img">
+        <div class="lenda-years">1993 — 2013</div>
+        <div class="lenda-name">Radamel Falcao</div>
+        <div class="lenda-pos">Atacante</div>
+        <div class="lenda-bio">El Tigre. Artilheiro nato e maior goleador da história da seleção colombiana. Rápido, potente e letal dentro da área nas melhores ligas da Europa por mais de uma década.</div>
+        <div class="lenda-stat-row">
+          <div class="lenda-stat"><div class="num">109</div><div class="lbl">Jogos</div></div>
+          <div class="lenda-stat"><div class="num">36</div><div class="lbl">Gols</div></div>
+          <div class="lenda-stat"><div class="num">1</div><div class="lbl">Copa Am.</div></div>
+        </div>
+      </div>
+      <div class="lenda-card">
+        <img src="img/rincon_e_sua_tropinha.webp" alt="Freddy Rincón" class="player-img">
+        <div class="lenda-years">1993 — 2006</div>
+        <div class="lenda-name">Freddy Rincón</div>
+        <div class="lenda-pos">Meio-campista</div>
+        <div class="lenda-bio">O Colosso de Buenaventura. Um dos meias mais completos que a Colômbia já produziu, lembrado pelo gol histórico que classificou a seleção para a Copa de 94.</div>
+        <div class="lenda-stat-row">
+          <div class="lenda-stat"><div class="num">84</div><div class="lbl">Jogos</div></div>
+          <div class="lenda-stat"><div class="num">17</div><div class="lbl">Gols</div></div>
+          <div class="lenda-stat"><div class="num">3</div><div class="lbl">Mundiais</div></div>
+        </div>
+      </div>
+      <div class="lenda-card" style="border-top-color:var(--amarelo)">
+        <img src="img/james.jpg" alt="James Rodríguez" class="player-img">
+        <div class="lenda-years">2006 — Presente</div>
+        <div class="lenda-name">James Rodríguez</div>
+        <div class="lenda-pos">Meio-campista</div>
+        <div class="lenda-bio">A estrela da Copa de 2014. James encantou o mundo com seus golões no Brasil e se tornou o símbolo de uma nova geração do futebol colombiano no cenário global.</div>
+        <div class="lenda-stat-row">
+          <div class="lenda-stat"><div class="num">98</div><div class="lbl">Jogos</div></div>
+          <div class="lenda-stat"><div class="num">28</div><div class="lbl">Gols</div></div>
+          <div class="lenda-stat"><div class="num">1</div><div class="lbl">Chuteira de Ouro</div></div>
+        </div>
+      </div>
+      <div class="lenda-card" style="border-top-color:var(--vermelho)">
+        <img src="img/ivan.jpg" alt="Iván Córdoba" class="player-img">
+        <div class="lenda-years">1992 — 2007</div>
+        <div class="lenda-name">Iván Córdoba</div>
+        <div class="lenda-pos">Zagueiro</div>
+        <div class="lenda-bio">O melhor zagueiro da história da Colômbia. Campeão da Champions League com a Inter de Milão, referência de solidez e liderança defensiva por mais de uma década.</div>
+        <div class="lenda-stat-row">
+          <div class="lenda-stat"><div class="num">85</div><div class="lbl">Jogos</div></div>
+          <div class="lenda-stat"><div class="num">5</div><div class="lbl">Gols</div></div>
+          <div class="lenda-stat"><div class="num">1</div><div class="lbl">Copa Am.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo"> <span>Colômbia</span></div>
+      <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+      <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+    </footer>
+  </div>
+
+<!-- ═══ ESTATÍSTICAS ═══ -->
+<div id="page-stats" class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Números que contam a história</div>
+    <h2 class="section-title">ESTATÍS<span>TICAS</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card" style="grid-column:span 2">
+      <div class="stat-card-title">Colômbia em números</div>
+      <div class="big-stat-grid">
+        <div class="big-stat-item"><div class="big-stat-num">900+</div><div class="big-stat-lbl">Partidas disputadas</div></div>
+        <div class="big-stat-item"><div class="big-stat-num">1</div><div class="big-stat-lbl">Copa América</div></div>
+        <div class="big-stat-item"><div class="big-stat-num">9</div><div class="big-stat-lbl">Copas do Mundo</div></div>
+        <div class="big-stat-item"><div class="big-stat-num">#9</div><div class="big-stat-lbl">Ranking FIFA atual</div></div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-title">Maiores artilheiros históricos</div>
+      <ul class="top-list">
+        <li><span class="top-rank gold">1</span><span class="top-name">Radamel Falcao</span><span class="top-val">36</span></li>
+        <li><span class="top-rank silver">2</span><span class="top-name">Arnoldo Iguarán</span><span class="top-val">25</span></li>
+        <li><span class="top-rank bronze">3</span><span class="top-name">Carlos Bacca</span><span class="top-val">21</span></li>
+        <li><span class="top-rank">4</span><span class="top-name">Teófilo Gutiérrez</span><span class="top-val">19</span></li>
+        <li><span class="top-rank">5</span><span class="top-name">Freddy Rincón</span><span class="top-val">17</span></li>
+      </ul>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-title">Mais jogos pela seleção</div>
+      <ul class="top-list">
+        <li><span class="top-rank gold">1</span><span class="top-name">Carlos Valderrama</span><span class="top-val">111</span></li>
+        <li><span class="top-rank silver">2</span><span class="top-name">Radamel Falcao</span><span class="top-val">109</span></li>
+        <li><span class="top-rank bronze">3</span><span class="top-name">Juan Cuadrado</span><span class="top-val">104</span></li>
+        <li><span class="top-rank">4</span><span class="top-name">James Rodríguez</span><span class="top-val">98</span></li>
+        <li><span class="top-rank">5</span><span class="top-name">Iván Córdoba</span><span class="top-val">85</span></li>
+      </ul>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-title">Desempenho nas Copas do Mundo</div>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">Itália '90</div><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><div class="bar-val">Oitavas</div></div>
+        <div class="bar-row"><div class="bar-label">EUA '94</div><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><div class="bar-val">Fase 1</div></div>
+        <div class="bar-row"><div class="bar-label">França '98</div><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><div class="bar-val">Fase 1</div></div>
+        <div class="bar-row"><div class="bar-label">Brasil '14</div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><div class="bar-val">Quartas</div></div>
+        <div class="bar-row"><div class="bar-label">Rússia '18</div><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><div class="bar-val">Oitavas</div></div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-title">Rivais históricos — vitórias</div>
+      <ul class="top-list">
+        <li><span class="top-rank gold">1</span><span class="top-name">vs Equador</span><span class="top-val">28V</span></li>
+        <li><span class="top-rank silver">2</span><span class="top-name">vs Venezuela</span><span class="top-val">25V</span></li>
+        <li><span class="top-rank bronze">3</span><span class="top-name">vs Peru</span><span class="top-val">22V</span></li>
+        <li><span class="top-rank">4</span><span class="top-name">vs Chile</span><span class="top-val">16V</span></li>
+        <li><span class="top-rank">5</span><span class="top-name">vs Uruguai</span><span class="top-val">11V</span></li>
+      </ul>
+    </div>
+</div>
+
+<footer>
+  <div class="footer-logo"> <span>Colômbia</span></div>
+  <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+  <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+</footer>
+</div>
+
+<!-- ═══ SIMULADOR ═══ -->
+<div id="page-simulador" class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Copa do Mundo 2026 — EUA / MEX / CAN</div>
+    <h2 class="section-title">SIMULADOR <span>2026</span></h2>
+    <div class="divider"></div>
+    <p style="font-size:.88rem;color:rgba(248,245,238,.5);margin-top:.5rem">Clique em um time para escolher o vencedor e avançar no chaveamento</p>
+  </div>
+
+  <div class="sim-controls">
+    <button class="sim-btn" onclick="simAleatorio()">🎲 Simular Aleatório</button>
+    <button class="sim-btn sim-reset" onclick="simReset()">↺ Reiniciar</button>
+    <span class="sim-info" id="sim-status">Selecione os vencedores de cada partida</span>
+  </div>
+
+  <div id="winner-banner" class="winner-banner">
+    <div style="font-size:2rem">🏆</div>
+    <h3 id="winner-name">COLÔMBIA</h3>
+    <p id="winner-msg">É CAMPEÃ DO MUNDO 2026!</p>
+  </div>
+
+  <div class="bracket">
+    <div class="bracket-title">OITAVAS DE FINAL</div>
+    <div class="bracket-rounds" id="bracket-container"></div>
+</div>
+
+<footer>
+  <div class="footer-logo"> <span>Colômbia</span></div>
+  <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+  <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+</footer>
+</div>
+
+<!-- ═══ DRAFT ═══ -->
+<div id="page-draft" class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Monte seu time ideal</div>
+    <h2 class="section-title">DRAFT DA <span>SELEÇÃO</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="draft-area">
+    <div class="draft-pool">
+      <h3>Jogadores disponíveis</h3>
+      <div class="draft-players" id="draft-pool"></div>
+    </div>
+    <div class="draft-team">
+      <h3>Meu time</h3>
+      <div class="draft-actions">
+        <select class="formation-select" id="formation-select" onchange="renderField()">
+          <option value="4-3-3">4-3-3</option>
+          <option value="4-4-2">4-4-2</option>
+          <option value="3-5-2">3-5-2</option>
+          <option value="4-2-3-1">4-2-3-1</option>
+          <option value="5-3-2">5-3-2</option>
+        </select>
+        <button class="draft-btn primary" onclick="exportTime()">📋 Copiar time</button>
+        <button class="draft-btn danger" onclick="resetDraft()">✕ Limpar</button>
+      </div>
+      <div class="field" id="field-display"></div>
+    </div>
+</div>
+
+<footer>
+  <div class="footer-logo"> <span>Colômbia</span></div>
+  <div style="display:flex;height:5px;width:60px"><div style="background:var(--amarelo);flex:1"></div><div style="background:var(--azul);flex:1"></div><div style="background:var(--vermelho);flex:1"></div></div>
+  <div class="footer-copy">© 2025 Colômbia — Site de fãs</div>
+</footer>
+</div>
+
+<!-- ═══ GALERIA ═══ -->
+<div id="page-galeria" class="page">
+    <div class="section-header">
+      <div class="section-eyebrow">Memórias que ficam para sempre</div>
+      <h2 class="section-title">GALERIA <span>HISTÓRICA</span></h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="galeria-filtros">
+      <button class="filtro-btn active" onclick="filtrarGaleria('todos',this)">Todos</button>
+      <button class="filtro-btn" onclick="filtrarGaleria('mundiais',this)">Copas do Mundo</button>
+      <button class="filtro-btn" onclick="filtrarGaleria('america',this)">Copa América</button>
+      <button class="filtro-btn" onclick="filtrarGaleria('lendas',this)">Lendas</button>
+      <button class="filtro-btn" onclick="filtrarGaleria('uniformes',this)">Uniformes</button>
+    </div>
+    
+    <div class="galeria-grid" id="galeria-grid">
+      
+      <div class="galeria-item" data-categoria="mundiais">
+        <div class="galeria-thumb">
+          <img src="img/gol.jpg" alt="Golaço do James" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="galeria-overlay">
+          <div class="galeria-info">
+            <div class="galeria-caption">Golaço do James Rodríguez</div>
+            <div class="galeria-ano">2014</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="galeria-item" data-categoria="america">
+        <div class="galeria-thumb">
+          <img src="img/copa.jpg" alt="Título Copa América" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="galeria-overlay">
+          <div class="galeria-info">
+            <div class="galeria-caption">O Título Inédito</div>
+            <div class="galeria-ano">2001</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="galeria-item" data-categoria="lendas">
+        <div class="galeria-thumb">
+          <img src="img/foto3.jpg" alt="Carlos Valderrama" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="galeria-overlay">
+          <div class="galeria-info">
+            <div class="galeria-caption">O Pibe Valderrama</div>
+            <div class="galeria-ano">1990</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="galeria-item" data-categoria="uniformes">
+        <div class="galeria-thumb">
+          <img src="img/foto4.jpg" alt="Camisa Clássica" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="galeria-overlay">
+          <div class="galeria-info">
+            <div class="galeria-caption">Manto Clássico Vermelho</div>
+            <div class="galeria-ano">1994</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="galeria-item" data-categoria="mundiais">
+        <div class="galeria-thumb">
+          <img src="img/foto5.jpg" alt="Comemoração Yerry Mina" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="galeria-overlay">
+          <div class="galeria-info">
+            <div class="galeria-caption">Alegria de Yerry Mina</div>
+            <div class="galeria-ano">2018</div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <footer>
+      <div class="footer-logo">OS <span>CAFETEROS</span></div>
+      <div style="display:flex;height:5px;width:60px">
+        <div style="background:var(--amarelo);flex:1"></div>
+        <div style="background:var(--azul);flex:1"></div>
+        <div style="background:var(--vermelho);flex:1"></div>
+      </div>
+      <div class="footer-copy">© 2025 Os Cafeteros</div>
+    </footer>
+  </div>
+
+<!-- ═══ CRONÔMETRO FIXO ═══ -->
+<div id="countdown-bar">
+  <div class="cd-trophy">🏆</div>
+  <div class="cd-label">Copa do Mundo 2026</div>
+  <div class="cd-units">
+    <div class="cd-unit"><span class="cd-num" id="cd-dias">000</span><span class="cd-lbl">Dias</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-horas">00</span><span class="cd-lbl">Horas</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-min">00</span><span class="cd-lbl">Min</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit"><span class="cd-num" id="cd-seg">00</span><span class="cd-lbl">Seg</span></div>
+  </div>
+  <div class="cd-event"> Vamos Colômbia!</div>
+</div>
+
+<script>
+/* ── NAVEGAÇÃO ── */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='galeria') renderGaleria('todos');
+  if(id==='draft') renderPool();
+  if(id==='simulador') renderBracket();
+}
+
+/* ── CRONÔMETRO ── */
+function updateCountdown(){
+  const target=new Date('2026-06-11T00:00:00'); // abertura Copa 2026
+  const now=new Date();
+  const diff=target-now;
+  if(diff<=0){
+    document.getElementById('cd-dias').textContent='000';
+    document.getElementById('cd-horas').textContent='00';
+    document.getElementById('cd-min').textContent='00';
+    document.getElementById('cd-seg').textContent='00';
+    return;
+  }
+  const dias=Math.floor(diff/86400000);
+  const horas=Math.floor((diff%86400000)/3600000);
+  const min=Math.floor((diff%3600000)/60000);
+  const seg=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-dias').textContent=String(dias).padStart(3,'0');
+  document.getElementById('cd-horas').textContent=String(horas).padStart(2,'0');
+  document.getElementById('cd-min').textContent=String(min).padStart(2,'0');
+  document.getElementById('cd-seg').textContent=String(seg).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* ── SIMULADOR ── */
+const R1=[
+  {a:'🇨🇴 Colômbia',b:'🇯🇵 Japão'},
+  {a:'🇧🇷 Brasil',b:'🇲🇽 México'},
+  {a:'🇦🇷 Argentina',b:'🇺🇸 EUA'},
+  {a:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra',b:'🇫🇷 França'},
+  {a:'🇪🇸 Espanha',b:'🇩🇪 Alemanha'},
+  {a:'🇵🇹 Portugal',b:'🇭🇷 Croácia'},
+  {a:'🇳🇱 Holanda',b:'🇸🇳 Senegal'},
+  {a:'🇺🇾 Uruguai',b:'🇮🇹 Itália'},
+];
+let simState={r1:[null,null,null,null,null,null,null,null],r2:[null,null,null,null],r3:[null,null],final:null,winner:null};
+
+function renderBracket(){
+  const cont=document.getElementById('bracket-container');
+  cont.innerHTML='';
+  // Oitavas
+  const round1=makeRound('Oitavas de Final',R1.map((m,i)=>({a:m.a,b:m.b,winner:simState.r1[i],idx:i,round:'r1'})));
+  cont.appendChild(round1);
+  // Quartas
+  const q=[
+    {a:simState.r1[0]||'?',b:simState.r1[1]||'?',winner:simState.r2[0],idx:0,round:'r2'},
+    {a:simState.r1[2]||'?',b:simState.r1[3]||'?',winner:simState.r2[1],idx:1,round:'r2'},
+    {a:simState.r1[4]||'?',b:simState.r1[5]||'?',winner:simState.r2[2],idx:2,round:'r2'},
+    {a:simState.r1[6]||'?',b:simState.r1[7]||'?',winner:simState.r2[3],idx:3,round:'r2'},
+  ];
+  cont.appendChild(makeRound('Quartas de Final',q));
+  // Semis
+  const s=[
+    {a:simState.r2[0]||'?',b:simState.r2[1]||'?',winner:simState.r3[0],idx:0,round:'r3'},
+    {a:simState.r2[2]||'?',b:simState.r2[3]||'?',winner:simState.r3[1],idx:1,round:'r3'},
+  ];
+  cont.appendChild(makeRound('Semifinais',s));
+  // Final
+  const f=[{a:simState.r3[0]||'?',b:simState.r3[1]||'?',winner:simState.final,idx:0,round:'final'}];
+  cont.appendChild(makeRound('Final',f));
+}
+
+function makeRound(label,matches){
+  const round=document.createElement('div');
+  round.className='round';
+  const lbl=document.createElement('div');
+  lbl.className='round-label';lbl.textContent=label;
+  round.appendChild(lbl);
+  matches.forEach(m=>{
+    if(m.a==='?'&&m.b==='?'){
+      const ph=document.createElement('div');
+      ph.className='match-box';ph.style.opacity='.3';
+      ph.innerHTML=`<div class="match-team">—</div><div class="match-team">—</div>`;
+      round.appendChild(ph);return;
+    }
+    const box=document.createElement('div');box.className='match-box';
+    const ta=document.createElement('div');ta.className='match-team'+(m.winner===m.a?' winner':'');
+    ta.textContent=m.a;
+    const tb=document.createElement('div');tb.className='match-team'+(m.winner===m.b?' winner':'');
+    tb.textContent=m.b;
+    if(m.a!=='?'){ta.onclick=()=>pickWinner(m.round,m.idx,m.a);}
+    if(m.b!=='?'){tb.onclick=()=>pickWinner(m.round,m.idx,m.b);}
+    box.appendChild(ta);box.appendChild(tb);
+    round.appendChild(box);
+  });
+  return round;
+}
+
+function pickWinner(round,idx,team){
+  simState[round][idx]=team;
+  propagate();
+  renderBracket();
+  checkFinal();
+}
+
+function propagate(){
+  for(let i=0;i<4;i++){const a=simState.r1[i*2],b=simState.r1[i*2+1];if(!a||!b)simState.r2[i]=null;}
+  for(let i=0;i<2;i++){const a=simState.r2[i*2],b=simState.r2[i*2+1];if(!a||!b)simState.r3[i]=null;}
+  if(!simState.r3[0]||!simState.r3[1])simState.final=null;
+}
+
+function checkFinal(){
+  if(simState.final){
+    document.getElementById('winner-name').textContent=simState.final;
+    const isColombia=simState.final.includes('Colômbia');
+    document.getElementById('winner-msg').textContent=isColombia?'🇨🇴 É CAMPEÃ DO MUNDO 2026! 🇨🇴':'É O CAMPEÃO DO MUNDO 2026!';
+    document.getElementById('winner-banner').classList.add('show');
+    document.getElementById('sim-status').textContent='Simulação concluída!';
+  } else {
+    document.getElementById('winner-banner').classList.remove('show');
+  }
+}
+
+function simAleatorio(){
+  const pick=teams=>{if(!teams[0]||!teams[1]||teams[0]==='?'||teams[1]==='?')return null;return teams[Math.floor(Math.random()*2)];};
+  R1.forEach((m,i)=>{simState.r1[i]=pick([m.a,m.b]);});
+  for(let i=0;i<4;i++)simState.r2[i]=pick([simState.r1[i*2],simState.r1[i*2+1]]);
+  for(let i=0;i<2;i++)simState.r3[i]=pick([simState.r2[i*2],simState.r2[i*2+1]]);
+  simState.final=pick([simState.r3[0],simState.r3[1]]);
+  renderBracket();checkFinal();
+}
+
+function simReset(){
+  simState={r1:[null,null,null,null,null,null,null,null],r2:[null,null,null,null],r3:[null,null],final:null};
+  document.getElementById('winner-banner').classList.remove('show');
+  document.getElementById('sim-status').textContent='Selecione os vencedores de cada partida';
+  renderBracket();
+}
+
+/* ── DRAFT ── */
+const PLAYERS=[
+  {num:1,name:'Camilo Vargas',pos:'GOL',club:'Atlas'},
+  {num:12,name:'Álvaro Montero',pos:'GOL',club:'Inter Miami'},
+  {num:2,name:'Daniel Muñoz',pos:'LAD',club:'Crystal Palace'},
+  {num:3,name:'Johan Mojica',pos:'LAE',club:'Girona'},
+  {num:4,name:'Dávinson Sánchez',pos:'ZAG',club:'Galatasaray'},
+  {num:5,name:'Yerry Mina',pos:'ZAG',club:'Fiorentina'},
+  {num:13,name:'Jhon Lucumí',pos:'ZAG',club:'Bologna'},
+  {num:16,name:'Santiago Arias',pos:'LAD',club:'Athletico PR'},
+  {num:6,name:'Wilmar Barrios',pos:'VOL',club:'Zenit'},
+  {num:8,name:'Mateus Uribe',pos:'MEI',club:'FC Porto'},
+  {num:10,name:'James Rodríguez',pos:'MEI',club:'Rayo Vallecano'},
+  {num:15,name:'Jhon Arias',pos:'MEI',club:'Fluminense'},
+  {num:17,name:'Juan Cuadrado',pos:'LAD',club:'Independiente'},
+  {num:18,name:'Richard Ríos',pos:'VOL',club:'Palmeiras'},
+  {num:7,name:'Luis Díaz',pos:'PNT',club:'Liverpool'},
+  {num:9,name:'Falcao',pos:'CA',club:'Millonarios'},
+  {num:11,name:'Duván Zapata',pos:'CA',club:'Torino'},
+  {num:14,name:'Miguel Borja',pos:'CA',club:'River Plate'},
+  {num:19,name:'Jhon Córdoba',pos:'CA',club:'Krasnodar'},
+];
+
+const FORMATIONS={
+  '4-3-3':[['CA','PNT','PNT'],['MEI','MEI','VOL'],['LAD','ZAG','ZAG','LAE'],['GOL']],
+  '4-4-2':[['CA','CA'],['MEI','MEI','MEI','MEI'],['LAD','ZAG','ZAG','LAE'],['GOL']],
+  '3-5-2':[['CA','CA'],['MEI','MEI','VOL','MEI','MEI'],['ZAG','ZAG','ZAG'],['GOL']],
+  '4-2-3-1':[['CA'],['MEI','MEI','PNT'],['VOL','VOL'],['LAD','ZAG','ZAG','LAE'],['GOL']],
+  '5-3-2':[['CA','CA'],['MEI','MEI','MEI'],['LAD','ZAG','ZAG','ZAG','LAE'],['GOL']],
+};
+
+let draftSlots={};
+let selectedPlayer=null;
+
+function renderPool(){
+  const pool=document.getElementById('draft-pool');
+  pool.innerHTML='';
+  PLAYERS.forEach(p=>{
+    const isUsed=Object.values(draftSlots).some(s=>s&&s.name===p.name);
+    const div=document.createElement('div');
+    div.className='draft-player'+(isUsed?' selected':'');
+    div.innerHTML=`<div class="dp-num">${p.num}</div><div class="dp-info"><div class="dp-name">${p.name}</div><div class="dp-pos">${p.pos} · <span class="dp-club">${p.club}</span></div></div><div class="dp-add">+</div>`;
+    if(!isUsed)div.onclick=()=>{selectedPlayer=p;highlightSlots();};
+    pool.appendChild(div);
+  });
+}
+
+function highlightSlots(){
+  document.querySelectorAll('.slot').forEach(s=>{
+    if(!s.dataset.filled) s.style.borderColor='rgba(252,209,22,.7)';
+  });
+}
+
+function renderField(){
+  const formation=document.getElementById('formation-select').value;
+  const rows=FORMATIONS[formation];
+  const field=document.getElementById('field-display');
+  field.innerHTML='';
+  draftSlots={};
+  const ps=document.createElement('div');
+  ps.className='position-slots';
+  ps.style.cssText='display:flex;flex-direction:column;justify-content:space-around;height:400px';
+  rows.forEach((row,ri)=>{
+    const rowDiv=document.createElement('div');
+    rowDiv.className='slot-row';
+    row.forEach((pos,ci)=>{
+      const key=`${ri}-${ci}`;
+      const slot=document.createElement('div');
+      slot.className='slot';
+      slot.innerHTML=`<div class="slot-pos">${pos}</div>`;
+      slot.onclick=()=>{
+        if(selectedPlayer){
+          draftSlots[key]={...selectedPlayer,pos};
+          renderFieldFilled(formation);
+          renderPool();
+          selectedPlayer=null;
+        } else if(draftSlots[key]){
+          delete draftSlots[key];
+          renderFieldFilled(formation);
+          renderPool();
+        }
+      };
+      rowDiv.appendChild(slot);
+    });
+    ps.appendChild(rowDiv);
+  });
+  field.appendChild(ps);
+}
+
+function renderFieldFilled(formation){
+  const rows=FORMATIONS[formation||document.getElementById('formation-select').value];
+  const field=document.getElementById('field-display');
+  field.innerHTML='';
+  const ps=document.createElement('div');
+  ps.className='position-slots';
+  ps.style.cssText='display:flex;flex-direction:column;justify-content:space-around;height:400px';
+  rows.forEach((row,ri)=>{
+    const rowDiv=document.createElement('div');rowDiv.className='slot-row';
+    row.forEach((pos,ci)=>{
+      const key=`${ri}-${ci}`;
+      const filled=draftSlots[key];
+      const slot=document.createElement('div');
+      slot.className='slot'+(filled?' filled':'');
+      slot.dataset.filled=filled?'1':'';
+      if(filled){
+        slot.innerHTML=`<div class="slot-pos">${pos}</div><div class="slot-name">${filled.name.split(' ').pop()}</div><div class="slot-remove">✕ remover</div>`;
+      } else {
+        slot.innerHTML=`<div class="slot-pos">${pos}</div>`;
+      }
+      slot.onclick=()=>{
+        if(selectedPlayer&&!filled){
+          draftSlots[key]={...selectedPlayer,pos};
+          renderFieldFilled(formation);
+          renderPool();
+          selectedPlayer=null;
+        } else if(filled){
+          delete draftSlots[key];
+          renderFieldFilled(formation);
+          renderPool();
+        }
+      };
+      rowDiv.appendChild(slot);
+    });
+    ps.appendChild(rowDiv);
+  });
+  field.appendChild(ps);
+}
+
+function resetDraft(){
+  draftSlots={};
+  selectedPlayer=null;
+  renderField();
+  renderPool();
+}
+
+function exportTime(){
+  const formation=document.getElementById('formation-select').value;
+  let txt=`🇨🇴 Meu Time — ${formation}\n\n`;
+  Object.values(draftSlots).forEach(p=>{txt+=`${p.pos}: ${p.name} (${p.club})\n`;});
+  navigator.clipboard.writeText(txt).then(()=>alert('Time copiado para a área de transferência! 🇨🇴'));
+}
+
+document.getElementById('formation-select').addEventListener('change',()=>{
+  draftSlots={};selectedPlayer=null;
+  renderField();renderPool();
+});
+
+/* ── GALERIA ── */
+const GALERIA_ITEMS = [
+  { src: 'img/copa.jpg',  caption: 'Copa América 2001',              ano: '2001', cat: 'america',   destaque: true  },
+  { src: 'img/gol.jpg',    caption: 'Golaço do James Rodríguez',      ano: '2014', cat: 'mundiais',  destaque: true  },
+  { src: 'img/valderrama.png', caption: 'Valderrama — Itália 90',                   ano: '1990', cat: 'lendas',    destaque: false },
+  { src: 'img/escorpião.jpg', caption: 'Escorpião de Higuita',                     ano: '1995', cat: 'lendas',    destaque: false },
+  { src: 'img/amarela.webp', caption: 'Uniforme Clássico Amarelo',                ano: '1990', cat: 'uniformes', destaque: false },
+  {  src: 'img/premio.jpg', caption: 'James Rodríguez — Golden Boot',            ano: '2014', cat: 'mundiais',  destaque: false },
+  { src: 'img/camisa.jpg', caption: 'Camisa 2001 — Copa América',               ano: '2001', cat: 'america',   destaque: false },
+  {  src: 'img/falcao.jpg',caption: 'Falcao — Artilheiro Histórico',          ano: '2013', cat: 'lendas',    destaque: false },
+  { src: 'img/classificação.jpg', caption: 'Classificação Itália 1990',                ano: '1990', cat: 'mundiais',  destaque: false },
+  { src: 'img/adidas.webp', caption: 'Uniforme Adidas 2014',                     ano: '2014', cat: 'uniformes', destaque: false },
+  {  src: 'img/2024.jpg', caption: 'Final Copa América 2024',                  ano: '2024', cat: 'america',   destaque: false },
+  { src: 'img/dias.jpg', caption: 'Luis Díaz — Nova Geração',                 ano: '2022', cat: 'lendas',    destaque: false },
+  { src: 'img/1994.jpg', caption: 'Uniforme Retro 1994',                      ano: '1994', cat: 'uniformes', destaque: false },
+  { src: 'img/2018.jpg', caption: 'Copa Rússia 2018 — Oitavas',               ano: '2018', cat: 'mundiais',  destaque: false },
+  { src: 'img/estadio.jpg', caption: 'El Campín — Bogotá',                      ano: '2001', cat: 'america',   destaque: false },
+  { src: 'img/uni.jpg', caption: 'Uniforme Away 2024',                       ano: '2024', cat: 'uniformes', destaque: false },
+];
+
+function renderGaleria(cat) {
+  const grid = document.getElementById('galeria-grid');
+  grid.innerHTML = '';
+
+  const items = cat === 'todos'
+    ? GALERIA_ITEMS
+    : GALERIA_ITEMS.filter(i => i.cat === cat);
+
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'galeria-item' + (item.destaque ? ' destaque' : '');
+
+    if (item.src) {
+      div.innerHTML = `
+        <img src="${item.src}" alt="${item.caption}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="galeria-overlay">
+          <div>
+            <div class="galeria-caption">${item.caption}</div>
+            <div class="galeria-ano">${item.ano}</div>
+          </div>
+        </div>`;
+    } else {
+      div.innerHTML = `
+        <div class="galeria-placeholder">
+          <div class="galeria-placeholder-icon">${item.emoji || '📷'}</div>
+          <div class="galeria-placeholder-label">${item.caption}</div>
+          <div class="galeria-placeholder-hint">Adicione a imagem em src no array GALERIA_ITEMS</div>
+        </div>
+        <div class="galeria-overlay">
+          <div>
+            <div class="galeria-caption">${item.caption}</div>
+            <div class="galeria-ano">${item.ano}</div>
+          </div>
+        </div>`;
+    }
+
+    grid.appendChild(div);
+  });
+}
+
+function filtrarGaleria(cat,btn){
+  document.querySelectorAll('.filtro-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGaleria(cat);
+}
+
+/* ── INIT ── */
+renderField();
+renderPool();
+renderBracket();
+renderGaleria('todos');
+</script>
+</body>
+</html>
